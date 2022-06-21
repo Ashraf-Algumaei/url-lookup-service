@@ -1,0 +1,93 @@
+openapi: 3.0.2
+info:
+  title: FastAPI
+  version: 0.1.0
+paths:
+  /:
+    get:
+      summary: Health
+      operationId: health__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /urlinfo/1/{hostname_and_port}/{original_path_and_query_string}:
+    get:
+      summary: Url Info
+      operationId: url_info_urlinfo_1__hostname_and_port___original_path_and_query_string__get
+      parameters:
+        - required: true
+          schema:
+            title: Hostname And Port
+            type: string
+          name: hostname_and_port
+          in: path
+        - required: true
+          schema:
+            title: Original Path And Query String
+            type: string
+          name: original_path_and_query_string
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UrlLookupResponse'
+      security:
+        - APIKeyHeader: []
+  /url-insert/1:
+    post:
+      summary: Url Insert
+      operationId: url_insert_url_insert_1_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UrlInsertRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UrlInsertResponse'
+      security:
+        - APIKeyHeader: []
+components:
+  schemas:
+    UrlInsertRequest:
+      title: UrlInsertRequest
+      type: object
+      properties:
+        urls:
+          title: Urls
+          type: array
+          items:
+            type: string
+    UrlInsertResponse:
+      title: UrlInsertResponse
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+    UrlLookupResponse:
+      title: UrlLookupResponse
+      type: object
+      properties:
+        hostName:
+          title: Hostname
+          type: string
+        status:
+          title: Status
+          type: string
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: Api-Key
