@@ -5,6 +5,10 @@ The main purpose of this project is have an API service that could be called by 
 Below is the high-level architecture diagram for the service: 
 ![GitHub Logo](/assets/Architecture-diagram.png)
 
+
+- **Database**: [Azure Cosmos](https://azure.microsoft.com/en-us/services/cosmos-db/) database
+- **API**: Python FastApi framework 
+
 ## Endpoints 
 Below are the endpoints in this project: 
 - `GET /urlinfo/1/{hostname_and_port}/{original_path_and_query_string}`  
@@ -64,9 +68,6 @@ Below are the steps to the run the service locally:
 1. Create a `.env` file in the root directory. This will contain the database secret key.
 2. In the root directory, run `make local-deploy`. It will run the tests and builds the application in a docker container. 
 3. The service will be running in `http://localhost:3002`. You can now hit the service using your tool of choice (Sample postman collection can be found under `assest` folder)
-
-## Implementation 
-TODO
 
 # Future Enhancements
 1. Endpoint for deleting URLs from the Database 
