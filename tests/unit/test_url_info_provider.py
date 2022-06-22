@@ -12,6 +12,12 @@ sys.path.insert(0, os.path.abspath(os.path.join(testdir, srcdir)))
 
 from constants import Constants
 from providers.url_info_provider import UrlInfoProvider
+from dto.url_insert_request import UrlInsertRequest
+
+
+@pytest.fixture
+def insert_request():
+    return UrlInsertRequest(urls=["testurl1.com", "testurl2.com"])
 
 
 @pytest.fixture()
@@ -50,3 +56,14 @@ def test_get_url_info(mock_manager, url_info_provider, mock_get_url_info_req):
 
     # THEN
     mock_manager.get_record.assert_called_with(malware_url, malware_url)
+
+
+def test_upsert_to_database(mock_manager, url_info_provider, insert_request):
+    # GIVEN
+    urls_to_insert = insert_request.urls
+
+    # WHEN
+    url_info_provider.upsert_to_database(urls=urls_to_insert)
+
+    # THEN
+    mock_manager.upsert_record.assert_called_with(urls_to_insert)

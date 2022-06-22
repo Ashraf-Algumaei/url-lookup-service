@@ -70,6 +70,13 @@ Below are the steps to the run the service locally:
 2. In the root directory, run `make local-deploy`. It will run the tests and builds the application in a docker container. 
 3. The service will be running in `http://localhost:3002`. You can now hit the service using your tool of choice (Sample postman collection can be found under `assest` folder)
 
+## Testing
+The service currently has Unit tests implemented. Below are the steps to run the tests:
+1. Create a `.env` file in the root directory with the contents below:  
+`COSMOS_DB_MASTER_KEY=<Databse-key>`  
+(this will contain the database secret key)
+2. In the root directory, run `make tests`. This will run only the tests implemented and will fail if any tests do not pass. 
+
 # Future Enhancements
 1. Endpoint for deleting URLs from the Database 
 2. Integration tests 
