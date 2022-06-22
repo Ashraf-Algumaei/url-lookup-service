@@ -33,3 +33,19 @@ class UrlInfoProvider:
         except (CosmosResourceNotFoundError, CosmosHttpResponseError):
             return None
 
+    def upsert_to_database(self, urls: List[str]) -> dict:
+        """
+        Sends a POST request to upsert to the container
+
+        Args:
+            urls: The specific URL to find the info for
+
+        Returns:
+            # TODO
+        """
+        try:
+            self.cosmos_manager.upsert_record(urls)
+            return True
+        except (CosmosResourceNotFoundError, CosmosHttpResponseError):
+            # TODO: logging errors
+            return None

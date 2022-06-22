@@ -29,3 +29,13 @@ class CosmosClientManager:
         record = self.url_container_client.read_item(item=item_id, partition_key=partition_key)
 
         return record
+
+    def upsert_record(self, items: List[str]):
+        """Upsert Record to Cosmos DB
+
+        Args:
+            item: list of Urls
+        """
+        for item in items:
+            record = {'id': item}
+            self.url_container_client.upsert_item(body=record)

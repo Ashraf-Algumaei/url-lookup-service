@@ -47,5 +47,6 @@ async def url_info(hostname_and_port: str, original_path_and_query_string: str, 
 # Post Endpoint to add websites with Malware
 @app.post('/url-insert/1', status_code=200, response_model=UrlInsertResponse)
 async def url_insert(request: UrlInsertRequest, api_key: APIKey = Depends(check_api_key)):
-    #TODO
-    return True
+    # insert to the database
+    response = url_info_service.insert_new_urls(request.urls)
+    return response

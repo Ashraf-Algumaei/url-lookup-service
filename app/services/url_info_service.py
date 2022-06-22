@@ -1,5 +1,6 @@
 from typing import List
 from constants import Constants
+from dto.url_insert_response import UrlInsertResponse
 from dto.url_lookup_response import UrlLookupResponse
 from providers.url_info_provider import UrlInfoProvider
 
@@ -12,6 +13,7 @@ class UrlInfoService:
     def __init__(self, url_info_provider: UrlInfoProvider):
         self.url_info_provider: UrlInfoProvider = url_info_provider
         self.urlLookupServiceResponse = UrlLookupResponse()
+        self.urlInsertServiceResponse = UrlInsertResponse()
 
     def get_url_status(self, url: str) -> UrlLookupResponse:
         """
@@ -33,3 +35,18 @@ class UrlInfoService:
             self.urlLookupServiceResponse.status = Constants.MALWARE_URL_MESSAGE
 
         return self.urlLookupServiceResponse
+
+    def insert_new_urls(self, urls: List[str]) -> UrlInsertResponse:
+        """
+        Inserts New URLs using the URL Info Provider
+
+        Args:
+            urls: List of URLs to insert to the Database
+        Returns:
+            UrlInsertResponse instance with values
+        """
+        url_info_response = self.url_info_provider.upsert_to_database(urls)
+        if url_info_response is None:
+            self.urlInsertServiceResponse.status = "Failed"
+
+        return self.urlInsertServiceResponse
