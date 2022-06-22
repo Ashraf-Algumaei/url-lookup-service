@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "638612e6-19ef-49ea-b3a1-274d883492e4",
+		"name": "Url Lookup Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6419042"
+	},
+	"item": [
+		{
+			"name": "Get Malware URL",
+			"protocolProfileBehavior": {
+				"removeRefererHeaderOnRedirect": false
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Api-Key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/urlinfo/1/testurl1.com/pathtowebsite",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"urlinfo",
+						"1",
+						"testurl1.com",
+						"pathtowebsite"
+					],
+					"query": [
+						{
+							"key": "APIKEY",
+							"value": "test",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Health",
+			"protocolProfileBehavior": {
+				"removeRefererHeaderOnRedirect": false
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Api-Key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "APIKEY",
+							"value": "test",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Malware URL",
+			"protocolProfileBehavior": {
+				"removeRefererHeaderOnRedirect": false
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Api-Key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"urls\": [\n        \"testinsertmalwareurl.com\",\n        \"testinsertmalwareurl5.com\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/url-insert/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"url-insert",
+						"1"
+					],
+					"query": [
+						{
+							"key": "APIKEY",
+							"value": "test",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "request_timestamp",
+			"value": "\"2019-09-23 10:06:00\""
+		}
+	]
+}
