@@ -3,6 +3,8 @@ from starlette.status import HTTP_200_OK, HTTP_403_FORBIDDEN
 from fastapi.security.api_key import APIKeyHeader, APIKey
 
 from constants import Constants
+from dto.url_insert_request import UrlInsertRequest
+from dto.url_insert_response import UrlInsertResponse
 from dto.url_lookup_response import UrlLookupResponse
 from providers.url_info_provider import UrlInfoProvider
 from services.url_info_service import UrlInfoService
@@ -40,3 +42,10 @@ async def url_info(hostname_and_port: str, original_path_and_query_string: str, 
     # check if the URL is found in the Database
     response = url_info_service.get_url_status(hostname_and_port)
     return response
+
+
+# Post Endpoint to add websites with Malware
+@app.post('/url-insert/1', status_code=200, response_model=UrlInsertResponse)
+async def url_insert(request: UrlInsertRequest, api_key: APIKey = Depends(check_api_key)):
+    #TODO
+    return True
