@@ -1,5 +1,6 @@
 # About the project
-The main purpose of this project is have an API service that could be called by other HTTP services to check if certain URLs contains malwares and are not safe to call. The service will host all the URLs in a Database (Cosmos DB) and notify the callers of the service if the URL it's calling is safe or not. The service also has another endpoint which could be used to add URLs that contain malwares
+The main purpose of this project is have an API service that could be called by other HTTP services to check if certain URLs contains malwares and are not safe to call. The service will host all the URLs in a Database (Cosmos DB) and notify the callers of the service if the URL it's calling is safe or not. The service also has another endpoint which could be used to add URLs that contain malwares.  
+The service is containerized using Docker and uses [`tiangolo/uvicorn-gunicorn`](https://hub.docker.com/r/tiangolo/uvicorn-gunicorn) image.
 
 ## Architecture 
 ![GitHub Logo](/assets/Architecture-diagram.png)
@@ -67,7 +68,7 @@ Below are the steps to the run the service locally:
 1. Create a `.env` file in the root directory with the contents below:  
 `COSMOS_DB_MASTER_KEY=<Databse-key>`  
 (this will contain the database secret key)
-2. In the root directory, run `make local-deploy`. It will run the tests and builds the application in a docker container. 
+2. In the root directory, run `make local-deploy`. It will run the linting, tests and builds the application in a docker container. 
 3. The service will be running in `http://localhost:3002`. You can now hit the service using your tool of choice (Sample postman collection can be found under `assest` folder)
 
 ## Testing
