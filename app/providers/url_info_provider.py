@@ -1,3 +1,4 @@
+import logging
 from typing import List
 from azure.cosmos.exceptions import CosmosResourceNotFoundError, CosmosHttpResponseError
 
@@ -26,11 +27,14 @@ class UrlInfoProvider:
             dict: the response from the database with the details
         """
         if url is None:
+            logging.info('No Reltio ID passed')
             return None
         try:
             response = self.cosmos_manager.get_record(url, url)
+            logging.info('Success: Received response from CosmosDB URL')
             return response
         except (CosmosResourceNotFoundError, CosmosHttpResponseError):
+            logging.error('Request to CosmosDB failed')
             return None
 
     def upsert_to_database(self, urls: List[str]) -> dict:
@@ -45,7 +49,8 @@ class UrlInfoProvider:
         """
         try:
             self.cosmos_manager.upsert_record(urls)
+            logging.info('Success: Inserting data into CosmosDb')
             return True
         except (CosmosResourceNotFoundError, CosmosHttpResponseError):
-            # TODO: logging errors
+            logging.error('Insertion to CosmosDB failed')
             return None

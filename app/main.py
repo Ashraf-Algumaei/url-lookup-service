@@ -1,3 +1,4 @@
+import logging
 from fastapi import Depends, FastAPI, HTTPException, Response
 from starlette.status import HTTP_200_OK, HTTP_403_FORBIDDEN
 from fastapi.security.api_key import APIKeyHeader, APIKey
@@ -41,6 +42,7 @@ async def health(response: Response):
 async def url_info(hostname_and_port: str, original_path_and_query_string: str, api_key: APIKey = Depends(check_api_key)):
     # check if the URL is found in the Database
     response = url_info_service.get_url_status(hostname_and_port)
+    logging.info(f'Response received for {hostname_and_port}: {response}')
     return response
 
 
@@ -49,4 +51,5 @@ async def url_info(hostname_and_port: str, original_path_and_query_string: str, 
 async def url_insert(request: UrlInsertRequest, api_key: APIKey = Depends(check_api_key)):
     # insert to the database
     response = url_info_service.insert_new_urls(request.urls)
+    logging.info(f'Response received for inserting URLs: {response}')
     return response
