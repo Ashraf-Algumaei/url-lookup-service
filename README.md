@@ -67,7 +67,8 @@ Below are the prerequisite tools needed to run the service:
 Below are the steps to the run the service locally: 
 1. Create a `.env` file in the root directory with the contents below:  
 `COSMOS_DB_MASTER_KEY=<Databse-key>`  
-(this will contain the database secret key)
+`APP_INSIGHTS_CONNECTION_STRING=<Application-insights-key>`
+(this will contain the database secret key and application insights key)
 2. In the root directory, run `make local-deploy`. It will run the linting, tests and builds the application in a docker container. 
 3. The service will be running in `http://localhost:3002`. You can now hit the service using your tool of choice. Make sure to insert `Api-key` parameter for authentication 
 4. The service uses keys for authentication, so make sure to insert `Api-key` in your request before calling  the service

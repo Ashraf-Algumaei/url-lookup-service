@@ -12,4 +12,5 @@ local-deploy: lint test
 remote-deploy:
 	az acr build -t urllookupservice:latest \
 	--build-arg COSMOS_DB_MASTER_KEY=$(COSMOS_DB_MASTER_KEY) \
+	--build-arg APP_INSIGHTS_CONNECTION_STRING=$(APP_INSIGHTS_CONNECTION_STRING) \
 	-r urllookupacr .
