@@ -69,7 +69,12 @@ Below are the steps to the run the service locally:
 `COSMOS_DB_MASTER_KEY=<Databse-key>`  
 (this will contain the database secret key)
 2. In the root directory, run `make local-deploy`. It will run the linting, tests and builds the application in a docker container. 
-3. The service will be running in `http://localhost:3002`. You can now hit the service using your tool of choice (Sample postman collection can be found under `assest` folder)
+3. The service will be running in `http://localhost:3002`. You can now hit the service using your tool of choice (Sample postman collection can be found under `assets` folder)
+
+Alternatively, the service can be ran in the cloud using Azure Web Apps: 
+1. In the root directory, run `make remote-deploy`. This step will push the Docker image to Azure Container registery.
+2. Once the image is successfully pushed, Azure Web App will pick up the latest docker image. 
+3. The service will be running in ... 
 
 ## Testing
 The service currently has Unit tests implemented. Below are the steps to run the tests:
@@ -77,6 +82,7 @@ The service currently has Unit tests implemented. Below are the steps to run the
 `COSMOS_DB_MASTER_KEY=<Databse-key>`  
 (this will contain the database secret key)
 2. In the root directory, run `make tests`. This will run only the tests implemented and will fail if any tests do not pass. 
+
 
 # Future Enhancements
 1. Endpoint for deleting URLs from the Database 

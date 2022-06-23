@@ -8,3 +8,8 @@ test:
 local-deploy: lint test
 	docker build . --target builder -t urllookupservice 
 	docker run -p 3002:80 -t -i --env-file .env urllookupservice
+
+remote-deploy:
+	az acr build -t urllookupservice:latest \
+	--build-arg COSMOS_DB_MASTER_KEY=$(COSMOS_DB_MASTER_KEY) \
+	-r urllookupacr .
