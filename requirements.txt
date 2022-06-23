@@ -3,3 +3,4 @@ azure-cosmos==4.2.0
 pytest-mock==3.7.0
 requests-mock==1.9.3
 flake8==4.0.1
+opencensus-ext-azure==1.1.4

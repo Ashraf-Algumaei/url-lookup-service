@@ -10,3 +10,4 @@ class Constants:
     COSMOS_DB_MASTER_KEY = config('COSMOS_DB_MASTER_KEY', cast=Secret, default="")
     SAFE_URL_MESSAGE = "SAFE"
     MALWARE_URL_MESSAGE = "MALWARE"
+    APP_INSIGHTS_CONNECTION_STRING = config('APP_INSIGHTS_CONNECTION_STRING', cast=Secret, default='')
