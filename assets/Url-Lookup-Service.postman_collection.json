@@ -7,7 +7,60 @@
 	},
 	"item": [
 		{
-			"name": "Get Malware URL",
+			"name": "Cloud: Get Malware URL",
+			"protocolProfileBehavior": {
+				"removeRefererHeaderOnRedirect": false
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Api-Key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://url-lookup-east-service.azurewebsites.net/urlinfo/1/testurl1.com/pathtowebsite",
+					"protocol": "https",
+					"host": [
+						"url-lookup-east-service",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"urlinfo",
+						"1",
+						"testurl1.com",
+						"pathtowebsite"
+					],
+					"query": [
+						{
+							"key": "APIKEY",
+							"value": "test",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local: Get Malware URL",
 			"protocolProfileBehavior": {
 				"removeRefererHeaderOnRedirect": false
 			},
@@ -108,7 +161,66 @@
 			"response": []
 		},
 		{
-			"name": "Insert Malware URL",
+			"name": "Local: Insert Malware URL",
+			"protocolProfileBehavior": {
+				"removeRefererHeaderOnRedirect": false
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Api-Key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"urls\": [\n        \"testinsertmalwareurl.com\",\n        \"testinsertmalwareurl5.com\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/url-insert/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"url-insert",
+						"1"
+					],
+					"query": [
+						{
+							"key": "APIKEY",
+							"value": "test",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cloud: Insert Malware URL",
 			"protocolProfileBehavior": {
 				"removeRefererHeaderOnRedirect": false
 			},
